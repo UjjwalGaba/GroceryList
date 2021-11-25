@@ -6,7 +6,7 @@ var morgan = require('morgan');
 var bodyparser = require('body-parser')
 
 var indexRouter = require('./controllers/index');
-var groceryRouter = require('./controllers/grocery');
+var groceryRouter = require('./controllers/groceries');
 var usersRouter = require('./controllers/users');
 
 var app = express();

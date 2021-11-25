@@ -1,13 +1,13 @@
 <h1>{{title}}</h1>
-<div class="add-btn">
-    <a href="/create" class="nav-brand text-dark">New Item <i class="fas fa-plus"></i> </a>
-</div>
+<a href="/grocery/create"> Add a New Item</a>
 {{#each groceries}}
     <div class="col-sm-6 col-lg-4 mb-3">
         <div class="card mb-4 text-center m-100">
             <div class="card-body">
                 <h3>{{this.groceries}}</h3>
                 <h4>{{this.quantity}}</h4>
+                <a href="/grocery/edit/{{this._id}}" class="btn btn-info text-light">Edit</a>
+                <a href="/grocery/delete/{{this._id}}" class="btn btn-danger" onclick="return confirmDelete()">Delete</a>
             </div>
         </div>
     </div>
