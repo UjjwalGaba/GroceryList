@@ -1,0 +1,28 @@
+
+:root{
+  --dark: #2b2d42;
+  --light: #adb5bd;
+  --border: #dee2e6;
+  --border-btn: #edf2f4;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+
+.nav-brand{
+  font-size: 1.5em;
+  border: 1px solid #adb5bd;
+}
+
+.add-btn {
+  padding-bottom: 20px;
+}
+
+

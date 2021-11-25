@@ -1,0 +1,45 @@
+<h1>{{title}}</h1>
+<div class="add-btn">
+    <a href="/create" class="nav-brand text-dark">New Item <i class="fas fa-plus"></i> </a>
+</div>
+{{#each groceries}}
+    <div class="col-sm-6 col-lg-4 mb-3">
+        <div class="card mb-4 text-center m-100">
+            <div class="card-body">
+                <h3>{{this.groceries}}</h3>
+                <h4>{{this.quantity}}</h4>
+            </div>
+        </div>
+    </div>
+{{/each}}
+
+<!--
+<form action="/" method="post">
+    <table class="table ">
+        <thead class="thead-dark bg-dark text-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Item 1</td>
+                <td>1 kg</td>
+                <td>
+                    <a href="#" class="btn border-shadow update">
+                        <span class="text-gradient"><i class="fas fa-pencil-alt"></i> </span>
+                    </a>
+                    <a href="#" class="btn border-shadow delete">
+                        <span class="text-gradient"><i class="fas fa-trash-alt"></i> </span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>
+-->
