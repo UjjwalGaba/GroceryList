@@ -10,6 +10,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Grocery List' });
 });
 
+// GET: /about
+router.get('/about', (req, res) => {
+  res.render('about',
+      {title: 'About this Site',
+        user: req.user
+      })
+})
+
 // GET: /register
 router.get('/register', (req, res) => {
   res.render('register', {

@@ -33,3 +33,45 @@ a {
   color: #0000ff;
 }
 
+.about-heading {
+  text-align: center;
+  padding: 15px;
+}
+
+.about-para {
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.index-title {
+  text-align: center;
+  text-decoration: #2b2d42;
+  padding: 10px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.index-bg {
+  background: url("https://i.ibb.co/Dk82Pkb/bg-index1.jpg");
+  background-repeat: no-repeat;
+  background-size: 1500px 900px;
+}
+
+.index-bg h1 {
+  text-align: center;
+  font: italic 70px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ffffff;
+}
+
+.index-message {
+  text-align: center;
+  padding: 15%;
+  color: #ffffff;
+}
+
+.index-message h3 {
+  font: italic 60px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.index-message p {
+  font: italic 25px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px;
+}

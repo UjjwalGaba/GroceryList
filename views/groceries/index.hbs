@@ -1,19 +1,7 @@
 <h1>{{title}}</h1>
+{{#if user}}
 <a href="/grocery/create"> Add a New Item</a>
-<!--
-{{#each groceries}}
-    <div class="col-sm-6 col-lg-4 mb-3">
-        <div class="card mb-4 text-center m-100">
-            <div class="card-body">
-                <h3>{{this.groceries}}</h3>
-                <h4>{{this.quantity}}</h4>
-                <a href="/grocery/edit/{{this._id}}" class="btn btn-info text-light">Edit</a>
-                <a href="/grocery/delete/{{this._id}}" class="btn btn-danger" onclick="return confirmDelete()">Delete</a>
-            </div>
-        </div>
-    </div>
-{{/each}}
--->
+{{/if}}
 
 <form action="/" method="post">
     <table class="table">
@@ -30,12 +18,14 @@
                     <td>{{this.groceries}}</td>
                     <td>{{this.quantity}}</td>
                     <td>
-                        <a href="/grocery/edit/{{this._id}}" class="btn border-shadow update">
-                            <span class="text-gradient"><i class="fas fa-pencil-alt"></i> </span>
-                        </a>
-                        <a href="/grocery/delete/{{this._id}}" class="btn border-shadow delete">
-                            <span class="text-gradient"><i class="fas fa-trash-alt"></i> </span>
-                        </a>
+                        {{#if ../user}}
+                            <a href="/grocery/edit/{{this._id}}" class="btn border-shadow update">
+                                <span class="text-gradient"><i class="fas fa-pencil-alt"></i> </span>
+                            </a>
+                            <a href="/grocery/delete/{{this._id}}" class="btn border-shadow delete">
+                                <span class="text-gradient"><i class="fas fa-trash-alt"></i> </span>
+                            </a>
+                        {{/if}}
                     </td>
             </tr>
         {{/each}}
