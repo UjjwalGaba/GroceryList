@@ -5,11 +5,37 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var bodyparser = require('body-parser')
 
+var app = express();
+
+// add passport for authorization, express session for session management
+const passport = require('passport')
+const session = require('express-session')
+
+// configure passport before referencing controllers since controllers will need to use passport
+// 1 - configure app to use sessions with some required options
+app.use(session({
+  secret:'someRandomString@123',
+  resave: true,
+  saveUninitialized: false
+}))
+
+// 2 - enable passport with session support
+app.use(passport.initialize())
+app.use(passport.session())
+
+// 3 - link passport to the user model which extends passport-local-mongoose
+const User = require('./models/user')
+passport.use(User.createStrategy())
+
+// 4 - set passport to read/write user data to/from session object
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+
 var indexRouter = require('./controllers/index');
 var groceryRouter = require('./controllers/groceries');
 var usersRouter = require('./controllers/users');
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,5 +1,6 @@
 <h1>{{title}}</h1>
 <a href="/grocery/create"> Add a New Item</a>
+<!--
 {{#each groceries}}
     <div class="col-sm-6 col-lg-4 mb-3">
         <div class="card mb-4 text-center m-100">
@@ -12,34 +13,33 @@
         </div>
     </div>
 {{/each}}
+-->
 
-<!--
 <form action="/" method="post">
-    <table class="table ">
+    <table class="table">
         <thead class="thead-dark bg-dark text-light">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Action</th>
-            </tr>
+        <tr>
+            <th scope="col">Grocery Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Actions</th>
+        </tr>
         </thead>
         <tbody>
+        {{#each groceries}}
             <tr>
-                <td>1</td>
-                <td>Item 1</td>
-                <td>1 kg</td>
-                <td>
-                    <a href="#" class="btn border-shadow update">
-                        <span class="text-gradient"><i class="fas fa-pencil-alt"></i> </span>
-                    </a>
-                    <a href="#" class="btn border-shadow delete">
-                        <span class="text-gradient"><i class="fas fa-trash-alt"></i> </span>
-                    </a>
-                </td>
+                    <td>{{this.groceries}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>
+                        <a href="/grocery/edit/{{this._id}}" class="btn border-shadow update">
+                            <span class="text-gradient"><i class="fas fa-pencil-alt"></i> </span>
+                        </a>
+                        <a href="/grocery/delete/{{this._id}}" class="btn border-shadow delete">
+                            <span class="text-gradient"><i class="fas fa-trash-alt"></i> </span>
+                        </a>
+                    </td>
             </tr>
+        {{/each}}
+
         </tbody>
     </table>
-
 </form>
--->

@@ -4,6 +4,21 @@ var router = express.Router();
 // add model reference
 var Groceries = require('../models/grocery')
 
+// passport for authentication
+const passport = require('passport')
+
+// authentication check
+function authCheck(req, res, next) {
+    // use express built-in method to check user identity. if a user found, continue to next method
+    if (req.isAuthenticated()) {
+        return next()
+    }
+
+    // if no user found, go to login
+    res.redirect('/login')
+}
+
+
 /* GET home page. */
 router.get('/', (req, res) => {
     // use Artist model to fetch all documents from artists collection in mongoDB
