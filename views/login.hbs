@@ -1,35 +1,39 @@
 <!-- login page -->
-<h1>Login</h1>
-<!-- if there is any error display the error message -->
-{{#if messages}}
-    <div class="alert alert-danger">
-        Invalid Login
-    </div>
-{{else}}
-    <div class="alert alert-info">
-        Please Enter your credentials
-    </div>
-{{/if}}
-<!-- displaying form to take input from users -->
-<form method="post">
-    <fieldset class="form-group">
-        <label for="username" class="col-2 control-label">Username: *</label>
-        <input name="username" id="username" required />
-    </fieldset>
-    <fieldset class="form-group">
-        <label for="password" class="col-2 control-label">Password: *</label>
-        <input name="password" id="password" type="password" required />
-    </fieldset>
-    <fieldset class="form-group">
-        <button class="btn btn-info offset-3">Login</button>
-        <a class="btn btn-info" href="/github">
-            Login with GitHub
-        </a>
-        <a class="btn btn-info" href="/google">
-            Login with Google
-        </a>
-        <hr />
-        <!-- displaying button to take the user to registration button -->
-        Need an account?  <a href="/register" title="Register">Register</a>
-    </fieldset>
-</form>
+<div class="login-page">
+    <h1>Login</h1>
+    <!-- if there is any error display the error message -->
+    {{#if messages}}
+        <div class="alert alert-danger">
+            Invalid Login
+        </div>
+    {{else}}
+        <div class="alert alert-secondary">
+            Please Enter your credentials
+        </div>
+    {{/if}}
+    <!-- displaying form to take input from users -->
+    <form method="post">
+        <fieldset class="form-group">
+            <label for="username" class="col-2 control-label">Username: *</label>
+            <input name="username" id="username" required />
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="password" class="col-2 control-label">Password: *</label>
+            <input name="password" id="password" type="password" required />
+        </fieldset>
+        <fieldset class="form-group">
+            <button class="btn btn-info offset-2">Login</button>
+            </br>
+            <a class="btn btn-info offset-2" href="/github">
+                Login with GitHub
+            </a>
+            </br>
+            <a class="btn btn-info offset-2" href="/google">
+                Login with Google
+            </a>
+            <hr />
+            <!-- displaying button to take the user to registration button -->
+            Need an account?  <a href="/register" title="Register">Register</a>
+        </fieldset>
+    </form>
+</div>

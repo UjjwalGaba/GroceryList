@@ -1,33 +1,38 @@
 <!-- registration page -->
-<h1>Register</h1>
+<div class="register-page">
+    <h1>Register</h1>
 
-<!-- form to allow user to register to database -->
-<form method="post">
-    <fieldset class="form-group">
-        <label for="username" class="col-2 control-label">Username: *</label>
-        <input name="username" id="username" required type="email"
-               placeholder="email@email.com" />
-    </fieldset>
-    <fieldset class="form-group">
-        <label for="password" class="col-2 control-label">Password: *</label>
-        <input name="password" id="password" type="password" required
-               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  />
-    </fieldset>
-    <fieldset class="form-group">
-        <label for="confirm" class="col-2 control-label">Confirm: *</label>
-        <input name="confirm" id="confirm" type="password" required
-               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-    </fieldset>
-    <fieldset class="form-group">
-        <button class="btn btn-info offset-3">Register</button>
-        <a class="btn btn-info" href="/github">
-            Register with GitHub
-        </a>
-        <a class="btn btn-info" href="/google">
-            Register with Google
-        </a>
-        <hr />
-        <!-- displaying link to login page if user already have account -->
-        Already have an account?  <a href="/login" title="Login">Login</a>
-    </fieldset>
-</form>
+    <!-- form to allow user to register to database -->
+    <form method="post">
+        <fieldset class="form-group">
+            <label for="username" class="col-2 control-label">Username: *</label>
+            <input name="username" id="username" required type="email"
+                   placeholder="email@email.com" />
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="password" class="col-2 control-label">Password: *</label>
+            <input name="password" id="password" type="password" placeholder="Min. 6 Characters" required
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  />
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="confirm" class="col-2 control-label">Confirm: *</label>
+            <input name="confirm" id="confirm" type="password" required
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+        </fieldset>
+        <fieldset class="form-group">
+            <button class="btn btn-info offset-2">Register</button>
+            </br>
+            <a class="btn btn-info offset-2" href="/github">
+                Register with GitHub
+            </a>
+            </br>
+            <a class="btn btn-info offset-2" href="/google">
+                Register with Google
+            </a>
+            <hr />
+            <!-- displaying link to login page if user already have account -->
+            Already have an account?  <a href="/login" title="Login">Login</a>
+        </fieldset>
+    </form>
+
+</div>
