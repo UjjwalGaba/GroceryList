@@ -1,4 +1,6 @@
+<!-- login page -->
 <h1>Login</h1>
+<!-- if there is any error display the error message -->
 {{#if messages}}
     <div class="alert alert-danger">
         Invalid Login
@@ -8,6 +10,7 @@
         Please Enter your credentials
     </div>
 {{/if}}
+<!-- displaying form to take input from users -->
 <form method="post">
     <fieldset class="form-group">
         <label for="username" class="col-2 control-label">Username: *</label>
@@ -19,7 +22,14 @@
     </fieldset>
     <fieldset class="form-group">
         <button class="btn btn-info offset-3">Login</button>
+        <a class="btn btn-info" href="/github">
+            Login with GitHub
+        </a>
+        <a class="btn btn-info" href="/google">
+            Login with Google
+        </a>
         <hr />
+        <!-- displaying button to take the user to registration button -->
         Need an account?  <a href="/register" title="Register">Register</a>
     </fieldset>
 </form>

@@ -1,6 +1,7 @@
+// link to mongoose
 const mongoose = require('mongoose')
 
-// define a schema for artists
+// define a schema for grocery
 const grocerySchema = new mongoose.Schema({
     groceries: {
         type: String,

@@ -1,4 +1,7 @@
+// use express
 var express = require('express');
+
+// instantiate an express router to pass the direct url request
 var router = express.Router();
 
 /* GET users listing. */

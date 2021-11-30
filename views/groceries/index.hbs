@@ -1,22 +1,29 @@
+<!-- Index view to display list-->
 <h1>{{title}}</h1>
+<!-- if user is not authenticated then create new button will not be displayed -->
 {{#if user}}
 <a href="/grocery/create"> Add a New Item</a>
 {{/if}}
 
+<!-- displaying the list in the form of table -->
 <form action="/" method="post">
     <table class="table">
+        <!-- customizing the head of table with bootstrap css -->
         <thead class="thead-dark bg-dark text-light">
         <tr>
+            <!-- column headings -->
             <th scope="col">Grocery Item</th>
             <th scope="col">Quantity</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
+        <!-- body of table, each item will be displayed in each row -->
         {{#each groceries}}
             <tr>
                     <td>{{this.groceries}}</td>
                     <td>{{this.quantity}}</td>
+                <!-- displaying the edit and delete button to only authenticated users -->
                     <td>
                         {{#if ../user}}
                             <a href="/grocery/edit/{{this._id}}" class="btn border-shadow update">

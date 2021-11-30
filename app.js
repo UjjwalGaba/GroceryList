@@ -5,7 +5,11 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var bodyparser = require('body-parser')
 
+
 var app = express();
+
+// reference to globals file. (db connection, passport config)
+const globals = require('./config/globals')
 
 // add passport for authorization, express session for session management
 const passport = require('passport')
@@ -31,11 +35,85 @@ passport.use(User.createStrategy())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+// passport GitHub config
+const gitHub = require('passport-github2').Strategy
+
+passport.use(new gitHub({
+        clientID: globals.gitHub.clientID,
+        clientSecret: globals.gitHub.clientSecret,
+        callbackURL: globals.gitHub.callbackURL
+    },
+    async (accessToken, refreshToken, profile, callback) => {
+        try {
+            // check if GitHub user already exists in our db
+            const user = await User.findOne({ oauthId: profile.id })
+
+            if (user) {
+                return callback(null, user) // user already exist so return user object and continue
+            }
+            else {
+                // create new GitHub user in our db and return the new user object to the calling function
+                const newUser = new User({
+                    username: profile.username,
+                    oauthProvider: 'GitHub',
+                    oauthId: profile.id
+                })
+                const savedUser = await newUser.save()
+                callback(null, savedUser)
+            }
+        }
+        catch (err) {
+            callback(err)
+        }
+    }
+))
+
+// Google authentication
+const googleStrategy = require('passport-google-oauth20').Strategy;
+
+passport.serializeUser(function (user, done) {
+    done(null, user.id)
+})
+
+passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
+        done(err, user)
+    })
+})
+
+passport.use(new googleStrategy({
+    clientID: globals.googleAuthentication.clientID,
+    clientSecret: globals.googleAuthentication.clientSecret,
+    callbackURL: globals.googleAuthentication.callbackURL
+},
+    async (accessToken, refreshToken, profile, callback) => {
+        try {
+            // check if Google user already exists in our db
+            const user = await User.findOne({ googleId: profile.id })
+
+            if (user) {
+                return callback(null, user) // user already exist so return user object and continue
+            }
+            else {
+                // create new Google user in our db and return the new user object to the calling function
+                const newUser = new User({
+                    username: profile.username,
+                    oauthProvider: 'Google',
+                    googleId: profile.id
+                })
+                const savedUser = await newUser.save()
+                callback(null, savedUser)
+            }
+        }
+        catch (err) {
+            callback(err)
+        }
+    }
+    ))
 
 var indexRouter = require('./controllers/index');
 var groceryRouter = require('./controllers/groceries');
 var usersRouter = require('./controllers/users');
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,7 +132,6 @@ app.use('/users', usersRouter);
 
 // mongoDB connection with mongoose
 const mongoose = require('mongoose')
-const globals = require('./config/globals')
 
 mongoose.connect(globals.db, {
   useNewUrlParser: true,

@@ -1,4 +1,7 @@
+// use express
 var express = require('express');
+
+// instantiate an express router to pass the direct url request
 var router = express.Router();
 
 // passport for authentication
@@ -67,6 +70,30 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/login')
+})
+
+// GET: /github
+router.get('/github', passport.authenticate('github', {
+  scope: ['user:email']
+}))
+
+// GET: /github/callback
+router.get('/github/callback', passport.authenticate('github', {
+  failureRedirect: '/login'
+}), (req, res) => {
+  res.redirect('/grocery')
+})
+
+// GET: /google
+router.get('/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}))
+
+// GET: /google/callback
+router.get('/google/callback', passport.authenticate('google', {
+  failureRedirect: '/login'
+}), (req, res) => {
+  res.redirect('/grocery')
 })
 
 module.exports = router;

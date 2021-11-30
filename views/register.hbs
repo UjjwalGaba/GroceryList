@@ -1,5 +1,7 @@
+<!-- registration page -->
 <h1>Register</h1>
 
+<!-- form to allow user to register to database -->
 <form method="post">
     <fieldset class="form-group">
         <label for="username" class="col-2 control-label">Username: *</label>
@@ -18,7 +20,14 @@
     </fieldset>
     <fieldset class="form-group">
         <button class="btn btn-info offset-3">Register</button>
+        <a class="btn btn-info" href="/github">
+            Register with GitHub
+        </a>
+        <a class="btn btn-info" href="/google">
+            Register with Google
+        </a>
         <hr />
+        <!-- displaying link to login page if user already have account -->
         Already have an account?  <a href="/login" title="Login">Login</a>
     </fieldset>
 </form>

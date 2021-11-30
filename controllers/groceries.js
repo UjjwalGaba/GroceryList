@@ -1,4 +1,7 @@
+// use express
 var express = require('express');
+
+// instantiate an express router to pass the direct url request
 var router = express.Router();
 
 // add model reference
@@ -19,15 +22,15 @@ function authCheck(req, res, next) {
 }
 
 
-/* GET home page. */
+/* GET home page.  /grocery -> index view */
 router.get('/', (req, res) => {
-    // use Artist model to fetch all documents from artists collection in mongoDB
+    // use Grocery model to fetch all documents from groceries collection in mongoDB
     Groceries.find((err, groceries) => {
         if(err) {
-            console.log(err)
+            console.log(err) // display error to console
             res.end(err)
         }
-        else {
+        else { // displaying index page with the title groceries
             res.render('groceries/index', {
                 groceries: groceries,
                 title: "Groceries",
@@ -37,21 +40,21 @@ router.get('/', (req, res) => {
     })
 })
 
-// GET create
-router.get('/create', (req,res) => {
+// GET: /grocery/create -> display the create form for user input after checking authentication
+router.get('/create', authCheck, (req,res) => {
     res.render('groceries/create', {
         title: "Add a New Groceries Item",
         user: req.user
     })
 })
 
-// POST request
-router.post('/create', (req,res) => {
-    // use mongoose model to create new Artist document
+// POST request: /grocery/create -> process the form and save the data to database
+router.post('/create', authCheck, (req,res) => {
+    // use mongoose model to create new grocery document
     Groceries.create({
         groceries: req.body.groceries,
         quantity: req.body.quantity
-    }, (err, newArtist) => {
+    }, (err, newGrocery) => {
         if (err) {
             console.log(err)
             res.end(err)
@@ -63,19 +66,19 @@ router.post('/create', (req,res) => {
 })
 
 // Update
-// GET: /artists/edit/abc123 => show pre-populated edit form
-router.get('/edit/:_id', (req, res) => {
+// GET: /grocery/edit/abc123 => show pre-populated edit form
+router.get('/edit/:_id', authCheck, (req, res) => {
     // read _id from url param
     let _id = req.params._id
 
-    // query the db for the selected artist document
+    // query the db for the selected grocery document
     Groceries.findById(_id, (err, grocery) => {
         if (err) {
             console.log(err)
             res.end(err)
         }
         else {
-            // load the edit view and pass the selected Artist document to it for display
+            // load the edit view and pass the selected grocery document to it for display
             res.render('groceries/edit', {
                 title: "Grocery Details",
                 groceries: grocery,
@@ -85,8 +88,8 @@ router.get('/edit/:_id', (req, res) => {
     })
 })
 
-// POST: /artists/edit/abc123 => update the existing Artist document with values from form submission
-router.post('/edit/:_id', (req,res) => {
+// POST: /grocery/edit/abc123 => update the existing grocery document with values from form submission
+router.post('/edit/:_id', authCheck, (req,res) => {
     // get document id from url parameter
     let _id = req.params._id
 
@@ -104,7 +107,7 @@ router.post('/edit/:_id', (req,res) => {
 })
 
 // Delete
-router.get('/delete/:_id', (req, res) => {
+router.get('/delete/:_id', authCheck, (req, res) => {
     let _id = req.params._id     // get document id from url parameter
 
     // use mongoose to delete document and redirect
